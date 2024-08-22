@@ -12,4 +12,8 @@ allprojects {
             jvmTarget = "1.8"
         }
     }
+    tasks.withType(JavaCompile::class).configureEach {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
 }
