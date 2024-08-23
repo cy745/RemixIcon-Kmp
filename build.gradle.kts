@@ -19,3 +19,13 @@ allprojects {
         targetCompatibility = "1.8"
     }
 }
+
+if (System.getenv("JITPACK") == "true") {
+    project("core") {
+        afterEvaluate {
+            tasks.getByName("clean") {
+                dependsOn(":svg-to-compose:transformSvgIcons")
+            }
+        }
+    }
+}
