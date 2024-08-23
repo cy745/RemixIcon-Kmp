@@ -36,4 +36,9 @@ tasks.register<JavaExec>("transformSvgIcons") {
     classpath = sourceSets.getByName("test").runtimeClasspath
 
     mainClass = "br.com.devsrsouza.svg2compose.MainKt"
+
+    doLast {
+        println("[transformSvgIcons]: finished")
+        println("[transformSvgIcons]: rootPath: ${rootProject.projectDir.absolutePath}")
+    }
 }

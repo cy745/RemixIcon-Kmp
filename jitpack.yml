@@ -1,4 +1,4 @@
 jdk:
   - openjdk17
-before_install:
-  - ./gradlew :svg-to-compose:transformSvgIcons
+install:
+  - ./gradlew :svg-to-compose:transformSvgIcons clean -xtest -xlint assemble publishToMavenLocal
