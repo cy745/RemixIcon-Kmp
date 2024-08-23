@@ -24,6 +24,7 @@ import com.squareup.kotlinpoet.MemberName
  */
 enum class PackageNames(val packageName: String) {
     MaterialIconsPackage("androidx.compose.material.icons"),
+    JetbrainsComposeUIPackage("org.jetbrains.compose.ui"),
     UiPackage("androidx.compose.ui"),
     GraphicsPackage(UiPackage.packageName + ".graphics"),
     VectorPackage(GraphicsPackage.packageName + ".vector"),
@@ -31,7 +32,7 @@ enum class PackageNames(val packageName: String) {
     Unit(UiPackage.packageName + ".unit"),
     FoundationPackage("androidx.compose.foundation"),
     LayoutPackage(FoundationPackage.packageName + ".layout"),
-    PreviewPackage(UiPackage.packageName + ".tooling.preview"),
+    PreviewPackage(JetbrainsComposeUIPackage.packageName + ".tooling.preview"),
     RuntimePackage("androidx.compose.runtime"),
 }
 

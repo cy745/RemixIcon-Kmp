@@ -69,8 +69,8 @@ mavenPublishing {
 
     configure(
         KotlinMultiplatform(
-            javadocJar = JavadocJar.None(),
-            sourcesJar = false,
+            javadocJar = JavadocJar.Javadoc(),
+            sourcesJar = true,
             androidVariantsToPublish = listOf("release")
         )
     )

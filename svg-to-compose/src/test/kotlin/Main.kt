@@ -27,6 +27,6 @@ fun main() {
                 }
         },
         allAssetsPropertyName = "AllIcons",
-        generatePreview = false,
+        generatePreview = true,
     )
 }
