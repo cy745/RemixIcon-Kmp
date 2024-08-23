@@ -1,28 +1,32 @@
 package br.com.devsrsouza.svg2compose
 
+import br.com.devsrsouza.svg_to_compose.BuildConfig
+import com.google.common.base.CaseFormat
 import java.io.File
 
 fun main() {
-    val iconTest = File("raw-icons4")
-    val src = File("build/generated-icons").apply { mkdirs() }
+    BuildConfig.rootPath
+
+    val root = File(BuildConfig.rootPath)
+    val srcPath = File(root, "RemixIcon/icons")
+    val targetPath = File(root, "core/src/commonMain/kotlin").apply { mkdirs() }
 
     Svg2Compose.parse(
-        applicationIconPackage = "br.com.compose.icons",
-        accessorName = "EvaIcons",
-        outputSourceDirectory = src,
-        vectorsDirectory = iconTest,
+        applicationIconPackage = "com.lalilu",
+        accessorName = "RemixIcon",
+        outputSourceDirectory = targetPath,
+        vectorsDirectory = srcPath,
+        type = VectorType.SVG,
         iconNameTransformer = { name, group ->
-            name.removeSuffix(group, ignoreCase = true)
-        }
+            name.removePrefix(group)
+                .replace('-', '_')
+                .let {
+                    CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, it).let { name ->
+                        if (name.first().isDigit()) "_$name" else name
+                    }
+                }
+        },
+        allAssetsPropertyName = "AllIcons",
+        generatePreview = false,
     )
-}
-
-private fun String.removeSuffix(suffix: String, ignoreCase: Boolean): String {
-    return if (ignoreCase) {
-        val index = lastIndexOf(suffix, ignoreCase = true)
-
-        if (index > -1) substring(0, index) else this
-    } else {
-        removeSuffix(suffix)
-    }
 }

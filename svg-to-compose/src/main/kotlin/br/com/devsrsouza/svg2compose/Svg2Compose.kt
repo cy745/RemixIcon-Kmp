@@ -47,7 +47,11 @@ object Svg2Compose {
 
                 // if there is no previous group, this is the root dir, and the group name should be the accessorName
                 val groupName =
-                    if (previousGroup == null) accessorName else file.name.toKotlinPropertyName()
+                    if (previousGroup == null) accessorName else file.name
+                        .trim()
+                        .replace("&", "And")
+                        .replace(' ', '_')
+                        .toKotlinPropertyName()
                 val groupPackage =
                     previousGroup?.let { group -> "${group.groupPackage}.${group.groupName.second.toLowerCase()}" }
                         ?: "$applicationIconPackage"
