@@ -4,17 +4,23 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.dokka)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.vanniktech.publish)
 }
 
 kotlin {
     jvm()
+
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    linuxX64()
-    linuxArm64()
+
+    androidTarget {
+        publishLibraryVariants("release")
+    }
+
     js {
         browser()
         nodejs()
@@ -27,17 +33,25 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-            }
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
         }
+    }
+}
 
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.junit)
-                implementation(libs.kotlin.test)
-            }
-        }
+group = libs.versions.lib.group.get()
+version = libs.versions.lib.version.get()
+
+android {
+    namespace = "$group".replace('-', '_').lowercase()
+    compileSdk = 34
+    defaultConfig {
+        minSdk = 21
     }
 }
 
@@ -45,9 +59,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
-
-group = libs.versions.lib.group.get()
-version = libs.versions.lib.version.get()
 
 mavenPublishing {
     coordinates(
@@ -58,8 +69,9 @@ mavenPublishing {
 
     configure(
         KotlinMultiplatform(
-            javadocJar = JavadocJar.Dokka("dokkaHtml"),
-            sourcesJar = true,
+            javadocJar = JavadocJar.None(),
+            sourcesJar = false,
+            androidVariantsToPublish = listOf("release")
         )
     )
 }

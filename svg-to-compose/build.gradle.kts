@@ -1,5 +1,17 @@
 plugins {
     id("kotlin")
+    alias(libs.plugins.build.config)
+    id("application")
+}
+
+buildConfig {
+    // 传递根项目路径
+    buildConfigField(String::class.java, "rootPath", rootProject.projectDir.absolutePath)
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 group = "br.com.devsrsouza"
@@ -15,3 +27,13 @@ dependencies {
     testImplementation(libs.junit)
 }
 
+tasks.register<JavaExec>("transformSvgIcons") {
+    dependsOn("build")
+
+    group = "Execution"
+    description = "Transforms the SVG icons to Compose"
+
+    classpath = sourceSets.getByName("test").runtimeClasspath
+
+    mainClass = "br.com.devsrsouza.svg2compose.MainKt"
+}
