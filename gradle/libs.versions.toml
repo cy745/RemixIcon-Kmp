@@ -4,8 +4,8 @@ compose_version = "1.6.11"
 agp_version = "8.5.2"
 junit_version = "4.13.2"
 
-lib_group = "com.github.cy745.RemixIcon-Kmp"
-lib_version = "0.0.1"
+lib_group = "io.github.cy745"
+lib_version = "0.0.2"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin_version" }
@@ -16,6 +16,7 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 
 build-config = { id = "com.github.gmazzo.buildconfig", version = "5.4.0" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish", version = "0.29.0" }
+dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit_version" }

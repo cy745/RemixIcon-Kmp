@@ -1,5 +1,6 @@
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
@@ -8,6 +9,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.vanniktech.publish)
+    alias(libs.plugins.dokka)
 }
 
 kotlin {
@@ -63,15 +65,47 @@ java {
 mavenPublishing {
     coordinates(
         groupId = group.toString(),
-        artifactId = "core",
+        artifactId = "remixicon-kmp",
         version = version.toString()
     )
 
     configure(
         KotlinMultiplatform(
-            javadocJar = JavadocJar.None(),
+            javadocJar = JavadocJar.Dokka("dokkaHtml"),
             sourcesJar = true,
             androidVariantsToPublish = listOf("release")
         )
     )
+
+    pom {
+        name = "RemixIcon Kmp"
+        description = "Kotlin Multiplatform library for the icon set of RemixIcon"
+        inceptionYear = "2024"
+        url = "https://github.com/cy745/RemixIcon-Kmp/"
+
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+
+        developers {
+            developer {
+                id = "cy745"
+                name = "cy745"
+                url = "https://github.com/cy745/"
+            }
+        }
+
+        scm {
+            url = "https://github.com/cy745/RemixIcon-Kmp/"
+            connection = "scm:git:git://github.com/cy745/RemixIcon-Kmp.git"
+            developerConnection = "scm:git:ssh://git@github.com/cy745/RemixIcon-Kmp.git"
+        }
+    }
+
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 }
