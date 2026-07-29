@@ -11,12 +11,12 @@ import kotlin.test.assertTrue
 class RemixIconValidationTest {
 
     @Test
-    fun `RemixIcon object exists`() {
+    fun remixIconObjectExists() {
         assertNotNull(RemixIcon)
     }
 
     @Test
-    fun `all known categories have icons`() {
+    fun allKnownCategoriesHaveIcons() {
         assertNotNull(RemixIcon.Arrows.ArrowDownBoxFill)
         assertNotNull(RemixIcon.Buildings.AncientGateFill)
         assertNotNull(RemixIcon.Business.AdvertisementFill)
@@ -39,19 +39,19 @@ class RemixIconValidationTest {
     }
 
     @Test
-    fun `AllIcons is not empty`() {
+    fun allIconsIsNotEmpty() {
         assertTrue(RemixIcon.AllIcons.isNotEmpty(), "AllIcons should not be empty")
     }
 
     @Test
-    fun `all icons in AllIcons are non-null DrawableResource`() {
+    fun allIconsAreNonNullDrawableResource() {
         RemixIcon.AllIcons.forEachIndexed { index, icon ->
             assertNotNull(icon, "Icon at index $index in AllIcons is null")
         }
     }
 
     @Test
-    fun `Count matches AllIcons size`() {
+    fun countMatchesAllIconsSize() {
         assertTrue(RemixIcon.Count > 0, "Count should be > 0")
         assertTrue(
             RemixIcon.Count == RemixIcon.AllIcons.size,
@@ -60,12 +60,12 @@ class RemixIconValidationTest {
     }
 
     @Test
-    fun `AllIcons contains first icon`() {
+    fun allIconsContainsFirstIcon() {
         assertNotNull(RemixIcon.AllIcons.first())
     }
 
     @Test
-    fun `icon property is typed as DrawableResource`() {
+    fun iconPropertyIsTypedAsDrawableResource() {
         val icon: DrawableResource = RemixIcon.Buildings.AncientGateFill
         assertNotNull(icon)
     }
