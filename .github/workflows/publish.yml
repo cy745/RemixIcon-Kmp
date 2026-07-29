@@ -45,7 +45,7 @@ jobs:
         run: ./gradlew :svg-to-compose:transformSvgIcons
 
       - name: Build core
-        run: ./gradlew :core:build
+        run: ./gradlew :core:assemble
 
       - name: Run validation
         run: ./gradlew :core:validateAll
