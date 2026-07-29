@@ -49,14 +49,15 @@ jobs:
       - name: Check Android SDK
         run: |
           if [ -d "$ANDROID_HOME" ]; then
-            echo "✅ Android SDK found at $ANDROID_HOME"
+            echo "Android SDK found at $ANDROID_HOME"
             ls "$ANDROID_HOME/platforms/" 2>/dev/null || echo "No platforms installed"
           else
-            echo "⚠️ Android SDK not found at $ANDROID_HOME"
+            echo "Android SDK not found at $ANDROID_HOME"
           fi
 
       - name: Validate SVG sources
-        run: echo "SVG count: $(find RemixIcon/icons -name '*.svg' | wc -l)"
+        run: |
+          echo "SVG count: $(find RemixIcon/icons -name '*.svg' | wc -l)"
 
       - name: Build core (including transform + tests)
         run: ./gradlew :core:build
