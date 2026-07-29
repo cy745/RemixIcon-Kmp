@@ -59,14 +59,17 @@ jobs:
         run: |
           echo "SVG count: $(find RemixIcon/icons -name '*.svg' | wc -l)"
 
-      - name: Build core (including transform + tests)
-        run: ./gradlew :core:build
+      - name: Build & transform svg-to-compose
+        run: ./gradlew :svg-to-compose:build
+
+      - name: Transform SVGs to CMP Resources
+        run: ./gradlew :svg-to-compose:transformSvgIcons
+
+      - name: Build core & run tests
+        run: ./gradlew :core:build :core:jvmTest
 
       - name: Run svg-to-compose unit tests
         run: ./gradlew :svg-to-compose:test
 
       - name: Run core validation
         run: ./gradlew :core:validateAll
-
-      - name: Verify JVM tests
-        run: ./gradlew :core:jvmTest
