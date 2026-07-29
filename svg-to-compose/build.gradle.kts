@@ -29,7 +29,7 @@ tasks.register<JavaExec>("transformSvgIcons") {
     dependsOn("build")
 
     group = "Execution"
-    description = "Transforms the SVG icons to Compose"
+    description = "Transforms the SVG icons to Compose Resources"
 
     classpath = sourceSets.getByName("test").runtimeClasspath
 

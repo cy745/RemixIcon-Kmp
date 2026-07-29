@@ -17,5 +17,3 @@ dependencyResolutionManagement {
 rootProject.name = "RemixIcon-Kmp"
 include(":core")
 include(":svg-to-compose")
-
-val isInJitPack = System.getenv()["JITPACK"] == "true"

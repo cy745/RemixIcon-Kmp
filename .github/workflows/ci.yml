@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, 'release/**']
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GRADLE_OPTS: -Dorg.gradle.jvmargs=-Xmx6g
+  ANDROID_HOME: /usr/local/lib/android/sdk
+  ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Set up Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', '**/gradle.properties', '**/libs.versions.toml') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Check Android SDK
+        run: |
+          if [ -d "$ANDROID_HOME" ]; then
+            echo "✅ Android SDK found at $ANDROID_HOME"
+            ls "$ANDROID_HOME/platforms/" 2>/dev/null || echo "No platforms installed"
+          else
+            echo "⚠️ Android SDK not found at $ANDROID_HOME"
+          fi
+
+      - name: Validate SVG sources
+        run: echo "SVG count: $(find RemixIcon/icons -name '*.svg' | wc -l)"
+
+      - name: Build core (including transform + tests)
+        run: ./gradlew :core:build
+
+      - name: Run svg-to-compose unit tests
+        run: ./gradlew :svg-to-compose:test
+
+      - name: Run core validation
+        run: ./gradlew :core:validateAll
+
+      - name: Verify JVM tests
+        run: ./gradlew :core:jvmTest
