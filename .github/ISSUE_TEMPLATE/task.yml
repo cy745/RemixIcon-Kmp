@@ -1,0 +1,11 @@
+name: Task
+description: 一般开发任务或改进
+title: "[Task] "
+labels: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 任务说明
+    validations:
+      required: true

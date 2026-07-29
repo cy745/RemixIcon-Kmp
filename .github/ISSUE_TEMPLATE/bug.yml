@@ -1,0 +1,19 @@
+name: Bug Report
+description: 提交 Bug 反馈
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 清晰简洁地描述这个 Bug
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 如何复现这个 Bug
+    validations:
+      required: true
