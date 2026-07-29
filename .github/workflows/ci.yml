@@ -65,8 +65,11 @@ jobs:
       - name: Transform SVGs to CMP Resources
         run: ./gradlew :svg-to-compose:transformSvgIcons
 
-      - name: Build core & run tests
-        run: ./gradlew :core:build :core:jvmTest
+      - name: Build core (all targets, no tests)
+        run: ./gradlew :core:assemble
+
+      - name: Run JVM tests
+        run: ./gradlew :core:jvmTest
 
       - name: Run svg-to-compose unit tests
         run: ./gradlew :svg-to-compose:test
