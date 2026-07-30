@@ -116,7 +116,7 @@ mavenPublishing {
     }
 
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-//    signAllPublications()
+    signAllPublications()
 }
 
 // Make core compilation depend on SVG resource transformation.
