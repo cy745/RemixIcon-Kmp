@@ -3,18 +3,13 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.cy745/remixicon-kmp)](https://central.sonatype.com/artifact/io.github.cy745/remixicon-kmp)
 ![CI](https://github.com/cy745/RemixIcon-Kmp/actions/workflows/ci.yml/badge.svg)
 
-A Kotlin Multiplatform library that wraps [Remix Icon](https://remixicon.com) as Compose Multiplatform Resources. Provides type-safe `DrawableResource` accessors for all 3229+ icons across 19 categories.
+A Kotlin Multiplatform library that wraps [Remix Icon](https://remixicon.com) as Compose Multiplatform Resources. Provides type-safe `DrawableResource` accessors for all **3229+ icons** across **20 categories**.
 
 ## 安装
 
 ```kotlin
-// build.gradle.kts
-repositories {
-    mavenCentral()
-}
-
 // commonMain dependencies
-implementation("io.github.cy745:remixicon-kmp:0.0.3")
+implementation("io.github.cy745:remixicon-kmp:0.0.4")
 ```
 
 ## 使用
@@ -25,18 +20,18 @@ import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.resources.painterResource
 
 // 非 Composable 环境：传递 DrawableResource 引用
-val iconRef = RemixIcon.Media.CameraFill
+val iconRef = RemixIcon.Media.cameraFill
 
 // Composable 环境：渲染
 @Composable
 fun MyIcon() {
     Icon(
-        painter = painterResource(RemixIcon.Media.CameraFill),
+        painter = painterResource(RemixIcon.Media.cameraFill),
         contentDescription = "camera"
     )
     // 或使用 ImageVector
     Icon(
-        imageVector = vectorResource(RemixIcon.Media.CameraFill),
+        imageVector = vectorResource(RemixIcon.Media.cameraFill),
         contentDescription = "camera"
     )
 }
@@ -45,29 +40,50 @@ fun MyIcon() {
 val allIcons = RemixIcon.AllIcons
 ```
 
+### 着色
+
+由于图标默认颜色为 `#000000`，渲染时通过 `tint` 着色：
+
+```kotlin
+Icon(
+    painter = painterResource(RemixIcon.Arrows.arrowDownFill),
+    contentDescription = null,
+    tint = Color.Red  // 或 theme color
+)
+```
+
+### 查看图标列表
+
+所有分类和图标名可参考 [完整图标索引](https://remixicon.com)。
+
 ## 目录结构
 
 | 分类 | 图标数 |
 |------|--------|
-| Arrows | 336 |
-| Buildings | 44 |
-| Business | 380 |
-| Communication | 186 |
-| Design | 98 |
-| Development | 138 |
-| Device | 210 |
-| Document | 106 |
-| Editor | 228 |
-| Finance | 80 |
-| Food | 102 |
-| Health & Medical | 116 |
-| Logos | 172 |
-| Map | 192 |
-| Media | 262 |
-| Others | 28 |
-| System | 342 |
-| User & Faces | 210 |
+| Arrows | 178 |
+| Buildings | 62 |
+| Business | 220 |
+| Communication | 92 |
+| Design | 236 |
+| Development | 66 |
+| Device | 192 |
+| Document | 244 |
+| Editor | 151 |
+| Finance | 172 |
+| Food | 34 |
+| GameAndSports | 50 |
+| Health & Medical | 84 |
+| Logos | 300 |
+| Map | 172 |
+| Media | 296 |
+| Others | 116 |
+| System | 348 |
+| User & Faces | 134 |
 | Weather | 82 |
+
+## 从 v0.0.2 迁移
+
+请参阅 [MIGRATION.md](MIGRATION.md)。
 
 ## 图标许可
 
