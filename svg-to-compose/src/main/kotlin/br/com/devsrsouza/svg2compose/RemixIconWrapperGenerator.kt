@@ -108,12 +108,14 @@ object RemixIconWrapperGenerator {
 
         entries.sortedBy { it.propertyName }.forEach { entry ->
             val property = PropertySpec.builder(entry.propertyName, drawableResourceType)
-                .initializer(
-                    "%T(%S, setOf(%T(setOf(), %S, -1, -1)))",
-                    drawableResourceType,
-                    "drawable:${entry.resourceName}",
-                    resourceItemType,
-                    "$resourceBasePath/drawable/${entry.resourceName}.xml"
+                .delegate(
+                    CodeBlock.of(
+                        "lazy { %T(%S, setOf(%T(setOf(), %S, -1, -1))) }",
+                        drawableResourceType,
+                        "drawable:${entry.resourceName}",
+                        resourceItemType,
+                        "$resourceBasePath/drawable/${entry.resourceName}.xml"
+                    )
                 )
                 .build()
             objectBuilder.addProperty(property)

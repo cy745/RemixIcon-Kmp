@@ -90,7 +90,7 @@ object RemixIconResourceGenerator {
             xmlOutputFile.writeText(raw.replace("currentColor", "#000000"))
         }
 
-        // Kotlin property name: "AncientGateFill"
+        // Kotlin property name: "ancientGateFill" (camelCase)
         val propertyName = iconBaseName
             .replace('-', '_')
             .let { name ->
@@ -101,6 +101,7 @@ object RemixIconResourceGenerator {
             .let { name ->
                 if (name.first().isDigit()) "_$name" else name
             }
+            .replaceFirstChar { it.lowercase() }
 
         return IconResourceEntry(
             categoryName = categoryName

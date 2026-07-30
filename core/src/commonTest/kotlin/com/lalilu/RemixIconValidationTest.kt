@@ -17,25 +17,25 @@ class RemixIconValidationTest {
 
     @Test
     fun allKnownCategoriesHaveIcons() {
-        assertNotNull(RemixIcon.Arrows.ArrowDownBoxFill)
-        assertNotNull(RemixIcon.Buildings.AncientGateFill)
-        assertNotNull(RemixIcon.Business.AdvertisementFill)
-        assertNotNull(RemixIcon.Communication.Chat1Fill)
-        assertNotNull(RemixIcon.Design.AlignItemBottomFill)
-        assertNotNull(RemixIcon.Development.BracesFill)
-        assertNotNull(RemixIcon.Device.AirplayFill)
-        assertNotNull(RemixIcon.Document.ArticleFill)
-        assertNotNull(RemixIcon.Editor.AB)
-        assertNotNull(RemixIcon.Finance.AuctionFill)
-        assertNotNull(RemixIcon.Food.BeerFill)
-        assertNotNull(RemixIcon.HealthAndMedical.AedElectrodesFill)
-        assertNotNull(RemixIcon.Logos.AlibabaCloudFill)
-        assertNotNull(RemixIcon.Map.AnchorFill)
-        assertNotNull(RemixIcon.Media.AlbumFill)
-        assertNotNull(RemixIcon.Others.AccessibilityFill)
-        assertNotNull(RemixIcon.System.AddBoxFill)
-        assertNotNull(RemixIcon.UserAndFaces.AccountBox2Fill)
-        assertNotNull(RemixIcon.Weather.BlazeFill)
+        assertNotNull(RemixIcon.Arrows.arrowDownBoxFill)
+        assertNotNull(RemixIcon.Buildings.ancientGateFill)
+        assertNotNull(RemixIcon.Business.advertisementFill)
+        assertNotNull(RemixIcon.Communication.chat1Fill)
+        assertNotNull(RemixIcon.Design.alignItemBottomFill)
+        assertNotNull(RemixIcon.Development.bracesFill)
+        assertNotNull(RemixIcon.Device.airplayFill)
+        assertNotNull(RemixIcon.Document.articleFill)
+        assertNotNull(RemixIcon.Editor.aB)
+        assertNotNull(RemixIcon.Finance.auctionFill)
+        assertNotNull(RemixIcon.Food.beerFill)
+        assertNotNull(RemixIcon.HealthAndMedical.aedElectrodesFill)
+        assertNotNull(RemixIcon.Logos.alibabaCloudFill)
+        assertNotNull(RemixIcon.Map.anchorFill)
+        assertNotNull(RemixIcon.Media.albumFill)
+        assertNotNull(RemixIcon.Others.accessibilityFill)
+        assertNotNull(RemixIcon.System.addBoxFill)
+        assertNotNull(RemixIcon.UserAndFaces.accountBox2Fill)
+        assertNotNull(RemixIcon.Weather.blazeFill)
     }
 
     @Test
@@ -66,7 +66,7 @@ class RemixIconValidationTest {
 
     @Test
     fun iconPropertyIsTypedAsDrawableResource() {
-        val icon: DrawableResource = RemixIcon.Buildings.AncientGateFill
+        val icon: DrawableResource = RemixIcon.Buildings.ancientGateFill
         assertNotNull(icon)
     }
 }

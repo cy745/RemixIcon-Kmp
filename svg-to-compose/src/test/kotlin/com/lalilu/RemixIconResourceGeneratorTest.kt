@@ -16,13 +16,13 @@ class RemixIconResourceGeneratorTest {
         val ancientGate = entries.find { it.svgFileName == "ancient-gate-fill.svg" }
         assertNotNull(ancientGate)
         assertEquals("buildings_ancient_gate_fill", ancientGate!!.resourceName)
-        assertEquals("AncientGateFill", ancientGate.propertyName)
+        assertEquals("ancientGateFill", ancientGate.propertyName)
         assertEquals("Buildings", ancientGate.categoryName)
 
         val bankLine = entries.find { it.svgFileName == "bank-line.svg" }
         assertNotNull(bankLine)
         assertEquals("buildings_bank_line", bankLine!!.resourceName)
-        assertEquals("BankLine", bankLine.propertyName)
+        assertEquals("bankLine", bankLine.propertyName)
     }
 
     @Test
@@ -34,7 +34,7 @@ class RemixIconResourceGeneratorTest {
         val heartFill = entries.find { it.svgFileName == "heart-fill.svg" }
         assertNotNull(heartFill)
         assertEquals("health_and_medical_heart_fill", heartFill!!.resourceName)
-        assertEquals("HeartFill", heartFill.propertyName)
+        assertEquals("heartFill", heartFill.propertyName)
         assertEquals("HealthAndMedical", heartFill.categoryName)
     }
 
@@ -47,7 +47,7 @@ class RemixIconResourceGeneratorTest {
         val userSmile = entries.find { it.svgFileName == "user-smile-fill.svg" }
         assertNotNull(userSmile)
         assertEquals("user_and_faces_user_smile_fill", userSmile!!.resourceName)
-        assertEquals("UserSmileFill", userSmile.propertyName)
+        assertEquals("userSmileFill", userSmile.propertyName)
         assertEquals("UserAndFaces", userSmile.categoryName)
     }
 

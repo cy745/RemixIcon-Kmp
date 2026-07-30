@@ -50,7 +50,7 @@ kotlin {
 
 // ─── CMP Resources Configuration ────────────────────────────────────────────
 compose.resources {
-    publicResClass = true
+    publicResClass = false
     packageOfResClass = "com.lalilu.remixicon.generated.resources"
     generateResClass = always
 }
