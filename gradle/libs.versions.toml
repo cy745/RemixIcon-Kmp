@@ -1,11 +1,11 @@
 [versions]
-kotlin_version = "2.0.0"
-compose_version = "1.6.11"
+kotlin_version = "2.3.21"
+compose_version = "1.11.0"
 agp_version = "8.5.2"
 junit_version = "4.13.2"
 
 lib_group = "io.github.cy745"
-lib_version = "0.0.3"
+lib_version = "0.0.3-local"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin_version" }

@@ -1,7 +1,7 @@
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -15,7 +15,6 @@ plugins {
 kotlin {
     jvm()
 
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
 
@@ -117,14 +116,15 @@ mavenPublishing {
     }
 
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
+//    signAllPublications()
 }
 
 // Make core compilation depend on SVG resource transformation.
 // Ensures composeResources/drawable/*.xml and RemixIcon.kt are generated before compiling.
-tasks.matching { it.name.startsWith("compileKotlin") }.configureEach {
-    dependsOn(rootProject.project(":svg-to-compose").tasks.named("transformSvgIcons"))
-}
+// Only activate when resources need regeneration:
+// tasks.matching { it.name.startsWith("compileKotlin") }.configureEach {
+//     dependsOn(rootProject.project(":svg-to-compose").tasks.named("transformSvgIcons"))
+// }
 
 // ─── Validation Tasks ───────────────────────────────────────────────────────
 

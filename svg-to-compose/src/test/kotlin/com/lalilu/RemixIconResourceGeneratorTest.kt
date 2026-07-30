@@ -113,8 +113,8 @@ class RemixIconResourceGeneratorTest {
 
     @Test
     fun `output XML files are well-formed`() {
-        val tempSvgDir = createTempDir()
-        val tempOutputDir = createTempDir()
+        val tempSvgDir = kotlin.io.path.createTempDirectory("test").toFile()
+        val tempOutputDir = kotlin.io.path.createTempDirectory("test").toFile()
 
         try {
             val catDir = File(tempSvgDir, "Buildings")
@@ -147,8 +147,8 @@ class RemixIconResourceGeneratorTest {
     private fun generateTestEntries(
         categories: Set<Pair<String, List<String>>>,
     ): List<RemixIconResourceGenerator.IconResourceEntry> {
-        val tempSvgDir = createTempDir()
-        val tempOutputDir = createTempDir()
+        val tempSvgDir = kotlin.io.path.createTempDirectory("test").toFile()
+        val tempOutputDir = kotlin.io.path.createTempDirectory("test").toFile()
 
         try {
             val svgContent = """<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>"""

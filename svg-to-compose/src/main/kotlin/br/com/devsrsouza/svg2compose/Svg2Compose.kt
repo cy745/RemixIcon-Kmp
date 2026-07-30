@@ -53,9 +53,9 @@ object Svg2Compose {
                         .replace(' ', '_')
                         .toKotlinPropertyName()
                 val groupPackage =
-                    previousGroup?.let { group -> "${group.groupPackage}.${group.groupName.second.toLowerCase()}" }
+                    previousGroup?.let { group -> "${group.groupPackage}.${group.groupName.second.lowercase()}" }
                         ?: "$applicationIconPackage"
-                val iconsPackage = "$groupPackage.${groupName.toLowerCase()}"
+                val iconsPackage = "$groupPackage.${groupName.lowercase()}"
 
                 val (groupFileSpec, groupClassName) = IconGroupGenerator(
                     groupPackage,
@@ -150,7 +150,7 @@ object Svg2Compose {
         return groupStack.pop().asParsingResult()
     }
 
-    private fun drawableTempDirectory() = createTempDir(suffix = "svg2compose/")
+    private fun drawableTempDirectory() = kotlin.io.path.createTempDirectory("svg2compose").toFile()
 
     private val String.withoutExtension get() = substringBeforeLast(".")
 }

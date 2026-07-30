@@ -83,6 +83,13 @@ object RemixIconResourceGenerator {
             outputStream.close()
         }
 
+        // Post-process: currentColor is not supported in Android Vector XML
+        // or CMP Resources parser, replace with #000000 (caller applies tint)
+        val raw = xmlOutputFile.readText()
+        if (raw.contains("currentColor")) {
+            xmlOutputFile.writeText(raw.replace("currentColor", "#000000"))
+        }
+
         // Kotlin property name: "AncientGateFill"
         val propertyName = iconBaseName
             .replace('-', '_')
